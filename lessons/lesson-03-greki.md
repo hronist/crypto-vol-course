@@ -268,4 +268,4 @@ gamma-PnL (½Γ·dS²)   против   theta-PnL (Θ·dt)
 ---
 
 *Предыдущий урок → [Урок 2. Модели ценообразования опционов](lesson-02-modeli-cenoobrazovaniya.md)*
-*Следующий урок → Урок 4. Поверхность волатильности: skew, smile и term structure (в планах)*
+*Следующий урок → [Урок 4. Поверхность волатильности: skew, smile и term structure](lesson-04-poverhnost-volatilnosti.md)*

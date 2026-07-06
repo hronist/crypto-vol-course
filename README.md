@@ -23,6 +23,10 @@
    — грек как частная производная модели; аналитический и численный расчёт; Delta/Gamma/
    Vega/Theta/Rho + второй порядок; PnL-разложение и трейд-офф gamma vs theta; применения:
    хедж, агрегация риска, PnL attribution.
+4. [Поверхность волатильности: skew, smile, term structure](lessons/lesson-04-poverhnost-volatilnosti.md)
+   — от одной IV к поверхности; котировка по дельте, risk reversal и butterfly; skew/smile и
+   их причины; term structure (contango/backwardation, события); безарбитражность и
+   параметризация (SVI/SABR); торговля формой поверхности.
 
 ## Как проходить
 
