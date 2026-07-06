@@ -28,6 +28,16 @@
    их причины; term structure (contango/backwardation, события); безарбитражность и
    параметризация (SVI/SABR); торговля формой поверхности.
 
+## Графики
+
+Количественные графики (payoff, профили греков, улыбка/skew, term structure) лежат в
+[`assets/`](assets/) как SVG и воспроизводимо генерируются скриптом:
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/make_figures.py    # пересобрать все assets/*.svg
+```
+
 ## Как проходить
 
 - **Читать рынок:** уроки 1–3 (Блок I).
