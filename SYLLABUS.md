@@ -128,4 +128,5 @@ loss = отрицательная гамма**, **funding перпов ≈ carry
 - [x] lesson-02 — Модели ценообразования (crypto edition)
 - [x] lesson-03 — Греки: откуда берутся и зачем нужны
 - [x] lesson-04 — Поверхность волатильности: skew, smile, term structure
-- [ ] lesson-05 … lesson-12 — в планах
+- [x] lesson-05 — Implied vs realized и volatility risk premium
+- [ ] lesson-06 … lesson-12 — в планах

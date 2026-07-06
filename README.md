@@ -27,6 +27,10 @@
    — от одной IV к поверхности; котировка по дельте, risk reversal и butterfly; skew/smile и
    их причины; term structure (contango/backwardation, события); безарбитражность и
    параметризация (SVI/SABR); торговля формой поверхности.
+5. [Implied vs realized и volatility risk premium](lessons/lesson-05-iv-vs-rv-vrp.md)
+   — измерение RV (close-to-close, Parkinson, Garman-Klass, Yang-Zhang); прогноз (EWMA,
+   GARCH, HAR-RV); VRP как источник дохода и когда он схлопывается; дельта-хедж на практике,
+   gamma-scalping, косты.
 
 ## Графики
 

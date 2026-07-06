@@ -202,6 +202,57 @@ def fig_term_structure():
     save(fig, "term_structure.svg")
 
 
+# ---------- Урок 5: IV против RV во времени (VRP) ----------
+def fig_iv_vs_rv():
+    rng = np.random.default_rng(7)
+    n = 252
+    rv = np.zeros(n)
+    rv[0] = 0.55
+    sh = rng.normal(0, 1, n)
+    for i in range(1, n):
+        rv[i] = 0.50 + 0.82 * (rv[i - 1] - 0.50) + 0.06 * sh[i]
+    # два стрессовых всплеска, где RV выстреливает выше IV
+    for c, w, a in [(90, 6, 0.55), (180, 5, 0.40)]:
+        rv += a * np.exp(-((np.arange(n) - c) ** 2) / (2 * w ** 2))
+    rv = np.clip(rv, 0.2, None)
+    # IV: сглаженный прогноз RV + премия
+    iv = np.copy(rv)
+    for i in range(1, n):
+        iv[i] = 0.90 * iv[i - 1] + 0.10 * rv[i]
+    iv = iv + 0.08
+    t = np.arange(n)
+    fig, ax = plt.subplots()
+    ax.plot(t, iv * 100, "C0", label="Implied vol (IV)")
+    ax.plot(t, rv * 100, "C3", label="Realized vol (RV)")
+    ax.fill_between(t, iv * 100, rv * 100, where=(iv >= rv), alpha=0.15, color="C0",
+                    label="VRP > 0 (продавец воли в плюсе)")
+    ax.fill_between(t, iv * 100, rv * 100, where=(iv < rv), alpha=0.25, color="C3",
+                    label="VRP < 0 (стресс, short vol в минусе)")
+    ax.set_title("Volatility risk premium: IV обычно выше RV, но схлопывается в стресс")
+    ax.set_xlabel("Дни")
+    ax.set_ylabel("Волатильность, %")
+    ax.legend(fontsize=9)
+    save(fig, "iv_vs_rv.svg")
+
+
+# ---------- Урок 5: scatter IV против последующей RV ----------
+def fig_vrp_scatter():
+    rng = np.random.default_rng(3)
+    iv = rng.uniform(0.4, 1.1, 200)
+    rv = iv - 0.09 + rng.normal(0, 0.10, 200)   # в среднем RV ниже IV на премию
+    rv = np.clip(rv, 0.1, None)
+    fig, ax = plt.subplots()
+    ax.scatter(iv * 100, rv * 100, s=18, alpha=0.6, color="C4")
+    lim = [30, 120]
+    ax.plot(lim, lim, "k--", lw=1, label="RV = IV (нулевой VRP)")
+    ax.set_xlim(lim); ax.set_ylim(lim)
+    ax.set_title("Точки под диагональю: реализованная вола чаще ниже вменённой")
+    ax.set_xlabel("Implied vol на входе, %")
+    ax.set_ylabel("Последующая realized vol, %")
+    ax.legend()
+    save(fig, "vrp_scatter.svg")
+
+
 def main():
     fig_payoff_call_put()
     fig_straddle()
@@ -210,6 +261,8 @@ def main():
     fig_pnl_gamma_theta()
     fig_smile_skew()
     fig_term_structure()
+    fig_iv_vs_rv()
+    fig_vrp_scatter()
     print("done ->", ASSETS)
 
 
