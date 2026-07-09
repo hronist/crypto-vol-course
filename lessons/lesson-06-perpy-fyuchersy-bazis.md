@@ -189,4 +189,4 @@ USD-дельту опциона нельзя гасить «в лоб» номи
 ---
 
 *Предыдущий урок → [Урок 5. Implied vs realized и volatility risk premium](lesson-05-iv-vs-rv-vrp.md)*
-*Следующий урок → Урок 7. Вменённые вероятности (risk-neutral density) — мост к рынку предсказаний (в планах)*
+*Следующий урок → [Урок 7. Вменённые вероятности (risk-neutral density)](lesson-07-vmenennye-veroyatnosti.md)*

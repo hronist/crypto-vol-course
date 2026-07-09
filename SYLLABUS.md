@@ -144,4 +144,5 @@ loss = отрицательная гамма**, **funding перпов ≈ carry
 - [x] lesson-04 — Поверхность волатильности: skew, smile, term structure
 - [x] lesson-05 — Implied vs realized и volatility risk premium
 - [x] lesson-06 — Перпы, фьючерсы и базис: carry и хеджинг-слой
-- [ ] lesson-07 … lesson-13 — в планах
+- [x] lesson-07 — Вменённые вероятности (risk-neutral density)
+- [ ] lesson-08 … lesson-13 — в планах

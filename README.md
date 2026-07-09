@@ -34,6 +34,9 @@
 6. [Перпы, фьючерсы и базис: carry и хеджинг-слой](lessons/lesson-06-perpy-fyuchersy-bazis.md)
    — связка спот↔перп↔фьючерс↔опцион; базис и cost-of-carry; contango/backwardation; форвард
    из опционов (put-call parity); cash-and-carry и funding-basis carry; дельта-хедж перпом.
+7. [Вменённые вероятности (risk-neutral density)](lessons/lesson-07-vmenennye-veroyatnosti.md)
+   — бинарный опцион как вероятность; RND из цен опционов (Breeden-Litzenberger); butterfly и
+   straddle как цены вероятностей; риск-нейтральные ≠ реальные; мост к рынку предсказаний.
 
 ## Графики
 

@@ -291,6 +291,46 @@ def fig_cash_and_carry():
     save(fig, "cash_and_carry.svg")
 
 
+# ---------- Урок 7: risk-neutral density ----------
+def _rn_density(S):
+    # смесь нормальных: основной пик у 100 + утяжелённый левый хвост (crash risk / skew)
+    return 0.82 * norm.pdf(S, 100, 14) + 0.18 * norm.pdf(S, 72, 20)
+
+def fig_risk_neutral_density():
+    S = np.linspace(40, 160, 500)
+    rn = _rn_density(S)
+    ref = norm.pdf(S, 100, 15)  # симметричная нормаль для сравнения
+    fig, ax = plt.subplots()
+    ax.plot(S, rn, "C0", label="Вменённое распределение (из опционов)")
+    ax.plot(S, ref, "C7", ls="--", label="Симметричная нормаль (для сравнения)")
+    ax.fill_between(S, rn, 0, where=(S < 80), alpha=0.2, color="C3")
+    ax.annotate("толстый левый хвост\n(crash risk / skew)", (60, 0.006), fontsize=9, color="C3")
+    ax.axvline(100, color="gray", ls=":", lw=0.9)
+    ax.set_title("Risk-neutral density: цены опционов кодируют распределение будущей цены")
+    ax.set_xlabel("Цена актива на экспирации")
+    ax.set_ylabel("Плотность вероятности (риск-нейтральная)")
+    ax.legend()
+    save(fig, "risk_neutral_density.svg")
+
+
+# ---------- Урок 7: butterfly как цена вероятности диапазона ----------
+def fig_butterfly_probability():
+    S = np.linspace(40, 160, 500)
+    rn = _rn_density(S)
+    Kc, w = 112, 12
+    tent = np.maximum(0, w - np.abs(S - Kc)) / w  # payoff бабочки, нормирован к 1
+    fig, ax = plt.subplots()
+    ax.plot(S, rn / rn.max(), "C0", alpha=0.5, label="Вменённое распределение (норм.)")
+    ax.plot(S, tent, "C1", label=f"Butterfly payoff (центр {Kc}, ±{w})")
+    ax.fill_between(S, np.minimum(tent, rn / rn.max()), 0, alpha=0.2, color="C1")
+    ax.annotate("цена бабочки ≈ вероятность\nпопасть в диапазон", (118, 0.55), fontsize=9)
+    ax.set_title("Butterfly = ставка на вероятность узкого диапазона цены")
+    ax.set_xlabel("Цена актива на экспирации")
+    ax.set_ylabel("Payoff / плотность (нормировано)")
+    ax.legend()
+    save(fig, "butterfly_probability.svg")
+
+
 def main():
     fig_payoff_call_put()
     fig_straddle()
@@ -303,6 +343,8 @@ def main():
     fig_vrp_scatter()
     fig_basis_curve()
     fig_cash_and_carry()
+    fig_risk_neutral_density()
+    fig_butterfly_probability()
     print("done ->", ASSETS)
 
 
