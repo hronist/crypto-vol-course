@@ -253,6 +253,44 @@ def fig_vrp_scatter():
     save(fig, "vrp_scatter.svg")
 
 
+# ---------- Урок 6: форвардная/базисная кривая ----------
+def fig_basis_curve():
+    S = 100.0
+    T = np.linspace(0, 1.0, 400)
+    contango = S * np.exp(0.09 * T)       # положительный carry
+    backwardation = S * np.exp(-0.07 * T) # отрицательный (стресс/дефицит предложения)
+    fig, ax = plt.subplots()
+    ax.axhline(S, color="k", lw=1, label="Спот S")
+    ax.plot(T, contango, "C0", label="Contango: F > S (обычный режим)")
+    ax.plot(T, backwardation, "C3", label="Backwardation: F < S (стресс)")
+    ax.set_title("Форвардная кривая: базис = F − S по срокам")
+    ax.set_xlabel("Срок до экспирации, годы")
+    ax.set_ylabel("Цена фьючерса F")
+    ax.legend()
+    save(fig, "basis_curve.svg")
+
+
+# ---------- Урок 6: cash-and-carry — сходимость базиса ----------
+def fig_cash_and_carry():
+    rng = np.random.default_rng(11)
+    n = 200
+    t = np.linspace(0, 1, n)              # доля прожитого срока
+    spot = 100 + np.cumsum(rng.normal(0, 1.1, n))  # случайный путь спота
+    basis0 = 6.0
+    fut = spot + basis0 * (1 - t)          # базис линейно сходится к нулю к экспирации
+    fig, ax = plt.subplots()
+    ax.plot(t, spot, "C1", label="Спот")
+    ax.plot(t, fut, "C0", label="Фьючерс (продан)")
+    ax.fill_between(t, spot, fut, alpha=0.15, color="C0", label="Базис → 0")
+    ax.axhline(spot[0] + basis0, color="gray", ls=":", lw=0.9)
+    ax.annotate("зафиксированная доходность = базис", (0.05, spot[0] + basis0 + 0.5), fontsize=9)
+    ax.set_title("Cash-and-carry: long спот + short фьючерс фиксирует базис")
+    ax.set_xlabel("Доля прожитого срока (0 → экспирация)")
+    ax.set_ylabel("Цена")
+    ax.legend()
+    save(fig, "cash_and_carry.svg")
+
+
 def main():
     fig_payoff_call_put()
     fig_straddle()
@@ -263,6 +301,8 @@ def main():
     fig_term_structure()
     fig_iv_vs_rv()
     fig_vrp_scatter()
+    fig_basis_curve()
+    fig_cash_and_carry()
     print("done ->", ASSETS)
 
 

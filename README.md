@@ -31,6 +31,9 @@
    — измерение RV (close-to-close, Parkinson, Garman-Klass, Yang-Zhang); прогноз (EWMA,
    GARCH, HAR-RV); VRP как источник дохода и когда он схлопывается; дельта-хедж на практике,
    gamma-scalping, косты.
+6. [Перпы, фьючерсы и базис: carry и хеджинг-слой](lessons/lesson-06-perpy-fyuchersy-bazis.md)
+   — связка спот↔перп↔фьючерс↔опцион; базис и cost-of-carry; contango/backwardation; форвард
+   из опционов (put-call parity); cash-and-carry и funding-basis carry; дельта-хедж перпом.
 
 ## Графики
 

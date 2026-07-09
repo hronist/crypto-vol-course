@@ -143,5 +143,5 @@ loss = отрицательная гамма**, **funding перпов ≈ carry
 - [x] lesson-03 — Греки: откуда берутся и зачем нужны
 - [x] lesson-04 — Поверхность волатильности: skew, smile, term structure
 - [x] lesson-05 — Implied vs realized и volatility risk premium
-- [ ] lesson-06 — Перпы, фьючерсы и базис: carry и хеджинг-слой (следующий)
+- [x] lesson-06 — Перпы, фьючерсы и базис: carry и хеджинг-слой
 - [ ] lesson-07 … lesson-13 — в планах
